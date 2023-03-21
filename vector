@@ -1,0 +1,50 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>//标准算法头文件
+using namespace std;
+void print(int val) {
+	cout << val << endl;
+}
+int main() {
+	vector<int> v;
+
+	//在容器中插入元素
+	for (int i = 0; i < 4; ++i)
+		v.push_back(i);
+
+	//遍历容器
+	vector<int>::iterator itBegin=v.begin();//起始迭代器，指向容器中第一个元素
+	vector<int>::iterator itEnd = v.end();//结束迭代器，指向容器中最后一个元素的下一个位置
+	while (itBegin != itEnd) {
+		cout << *itBegin << endl;
+		itBegin++;
+	}
+	for (vector<int>::iterator it = v.begin(); it != v.end(); it++) {
+		cout << *it << endl;
+	}
+	for_each(v.begin(), v.end(), print);
+	//迭代器从v.begin()到v.end()，并将其作为第三个参数函数的参数并调用该函数
+
+	//容器的嵌套
+	vector<vector<int>> V;
+	vector<int> v1;
+	vector<int> v2;
+	vector<int> v3;
+	vector<int> v4;
+	for (int i = 0; i < 4; ++i) {
+		v1.push_back(i + 1);
+		v2.push_back(i + 2);
+		v3.push_back(i + 3);
+		v4.push_back(i + 4);
+	}
+	V.push_back(v1);
+	V.push_back(v2);
+	V.push_back(v3);
+	V.push_back(v4);
+	for (vector<vector<int>>::iterator it = V.begin(); it != V.end(); ++it) {
+		for (vector<int>::iterator vit = (*it).begin(); vit != (*it).end(); ++vit) {
+			cout << *vit << " ";
+		}
+		cout << endl;
+	}
+}
